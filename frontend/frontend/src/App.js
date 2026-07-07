@@ -6,7 +6,11 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Your primary public route */}
         <Route path="/" element={<LandingPage />} />
+        
+        {/* If you add more pages later, add them here */}
+        {/* <Route path="/about" element={<AboutPage />} /> */}
       </Routes>
     </Router>
   );
