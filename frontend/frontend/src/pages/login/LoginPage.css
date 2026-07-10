@@ -1,0 +1,239 @@
+/* @tailwind components;
+
+@layer components {
+  .auth-page {
+    @apply min-h-screen flex items-center justify-center bg-brand-leaf px-4;
+  }
+
+  .auth-card {
+    @apply w-full max-w-sm bg-brand-cream rounded-lg p-8;
+  }
+
+  .auth-kicker {
+    @apply font-mono text-xs uppercase tracking-widest text-brand-clay font-semibold mb-2;
+  }
+
+  .auth-title {
+    @apply font-serif italic text-2xl font-semibold mb-6 text-brand-ink;
+  }
+
+  .auth-form {
+    @apply space-y-4;
+  }
+
+  .auth-label {
+    @apply block text-xs font-semibold text-brand-ink/70 mb-1;
+  }
+
+  .auth-input {
+    @apply w-full px-3 py-2.5 border border-black/15 rounded-md text-sm text-brand-ink
+           focus:outline-none focus:ring-2 focus:ring-brand-gold/40 transition-shadow;
+  }
+
+  .auth-error {
+    @apply text-xs text-brand-danger;
+  }
+
+  .auth-check-row {
+    @apply flex items-center justify-between text-xs text-brand-ink/70;
+  }
+
+  .auth-check-row a {
+    @apply text-brand-clay font-semibold;
+  }
+
+  .auth-submit {
+    @apply w-full py-3 rounded-md bg-brand-leaf text-brand-cream font-semibold text-sm
+           hover:bg-brand-leaf2 disabled:opacity-60 transition-colors;
+  }
+
+  .auth-switch {
+    @apply text-center text-sm text-brand-ink/60 mt-6;
+  }
+
+  .auth-switch-link {
+    @apply text-brand-clay font-semibold;
+  }
+}
+
+.auth-check-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-checkbox {
+  width: 14px;
+  height: 14px;
+}
+
+.auth-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #9C4A2E;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.auth-link-btn:hover {
+  text-decoration: underline;
+} */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1E3626;
+  padding: 0 16px;
+  font-family: 'Work Sans', sans-serif;
+  box-sizing: border-box;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 384px;
+  background: #F6EFE2;
+  border-radius: 8px;
+  padding: 32px;
+}
+
+.auth-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #9C4A2E;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.auth-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 24px;
+  color: #2A1F16;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(42, 31, 22, 0.7);
+  margin-bottom: 4px;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  font-size: 14px;
+  color: #2A1F16;
+  font-family: inherit;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: #C68A2E;
+  box-shadow: 0 0 0 3px rgba(198, 138, 46, 0.25);
+}
+
+.auth-error {
+  font-size: 12px;
+  color: #B3432F;
+  margin: 0;
+}
+
+.auth-check-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: rgba(42, 31, 22, 0.7);
+}
+
+.auth-check-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-checkbox {
+  width: 14px;
+  height: 14px;
+}
+
+.auth-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #9C4A2E;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.auth-link-btn:hover {
+  text-decoration: underline;
+}
+
+.auth-submit {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #1E3626;
+  color: #F6EFE2;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.auth-submit:hover {
+  background: #2C4A36;
+  transform: translateY(-1px);
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 14px;
+  color: rgba(42, 31, 22, 0.6);
+  margin: 24px 0 0;
+}
+
+.auth-switch-link {
+  color: #9C4A2E;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-switch-link:hover {
+  text-decoration: underline;
+}
+
+.auth-switch-small {
+  margin-top: 8px;
+  font-size: 12px;
+}
