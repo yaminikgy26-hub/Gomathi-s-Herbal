@@ -74,6 +74,8 @@
 
 // export default App;
 
+// 
+
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import LandingPage from "./pages/landing-page/landing-page";
@@ -85,13 +87,13 @@ import UserProfilePage from "./pages/user/UserProfilePage";
 import SuperAdminDashboard from "./pages/SuperAdminDashboard";
 import SuperAdminProfile from "./pages/SuperAdminProfile";
 import AdminDashboard from "./pages/AdminDashboard";
-
+// import AdminsPage from "./pages/AdminsPage"; // uncomment once this file exists
 
 import OrdersPage from "./pages/OrdersPage";
 import ProductsPage from "./pages/ProductsPage";
 import CustomersPage from "./pages/CustomersPage";
 import SettingsPage from "./pages/SettingsPage";
-
+import AdminManagement from "./pages/AdminManagement";
 import SuperAdminSidebar from "./components/SideBar/SuperAdminSidebar";
 import AdminSidebar from "./components/SideBar/AdminSidebar";
 import ProtectedRoute from "./components/Auth/ProtectedRoute";
@@ -104,13 +106,14 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<UserRegisterPage />} />
+
         <Route path="/super-admin/register" element={<RegisterPage />} />
 
-        {/* Customer (protected) */}
+        {/* Customer (protected) — role fixed to match Django's actual value: "user" */}
         <Route
           path="/user/profile"
           element={
-            <ProtectedRoute allowedRoles={["customer"]}>
+            <ProtectedRoute allowedRoles={["user"]}>
               <UserProfilePage />
             </ProtectedRoute>
           }
@@ -145,7 +148,7 @@ function App() {
           path="/super-admin/orders"
           element={
             <ProtectedRoute allowedRoles={["super_admin"]}>
-              <OrdersPage SideBar={<SuperAdminSidebar />} welcomeName="Super Admin" userInitials="SA" profilePath="/super-admin/profile" />
+              <OrdersPage sidebar={<SuperAdminSidebar />} welcomeName="Super Admin" userInitials="SA" profilePath="/super-admin/profile" />
             </ProtectedRoute>
           }
         />
@@ -173,6 +176,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+    path="/super-admin/admins"
+    element={
+        <ProtectedRoute allowedRoles={["super_admin"]}>
+            <AdminManagement />
+        </ProtectedRoute>
+    }
+/>
 
         {/* Admin (protected) */}
         <Route

@@ -161,6 +161,8 @@
 // export default LoginPage;
 
 
+// 
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { loginUser } from "../../api/authService";
@@ -173,28 +175,29 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-    try {
-      const data = await loginUser(formData);
-      const role = data.user.role;
+  e.preventDefault();
+  setError("");
+  setLoading(true);
 
-      if (role === "super_admin") {
-        navigate("/super-admin/SuperAdminDashboard");
-      } else if (role === "admin") {
-        navigate("/admin/AdminDashboard");
-      } else {
-        navigate("/user/profile");
-      }
-    } catch (err) {
-      setError(err.response?.data?.detail || "Invalid email or password.");
-    } finally {
-      setLoading(false);
+  try {
+    const data = await loginUser(formData);
+    const role = data.user.role;
+
+    if (role === "super_admin") {
+      navigate("/super-admin/SuperAdminDashboard");
+    } else if (role === "admin") {
+      navigate("/admin/AdminDashboard");
+    } else {
+      navigate("/user/profile");
     }
-  };
+  } catch (err) {
+    console.error(err);
+    setError(err.message || "Invalid email or password.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="auth-page">
@@ -242,9 +245,6 @@ const LoginPage = () => {
 
         <p className="auth-switch">
           New here? <Link to="/register" className="auth-switch-link">Create an account</Link>
-        </p>
-        <p className="auth-switch auth-switch-small">
-          Super Admin? <Link to="/super-admin/register" className="auth-switch-link">Register here</Link>
         </p>
       </div>
     </div>

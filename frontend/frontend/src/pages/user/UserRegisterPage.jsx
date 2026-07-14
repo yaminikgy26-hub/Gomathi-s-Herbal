@@ -1,3 +1,5 @@
+// 
+
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerCustomer } from "../../api/authService";
@@ -5,11 +7,10 @@ import "./UserRegisterPage.css";
 
 const UserRegisterPage = () => {
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
-    phone: "",
+    phoneNumber: "",
     password: "",
-    confirmPassword: "",
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,41 +19,31 @@ const UserRegisterPage = () => {
   const handleChange = (e) => setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords don't match.");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      await registerCustomer({
-        full_name: formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-      });
-      navigate("/login");
-    } catch (err) {
-      setError(err.response?.data?.detail || "Registration failed. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  e.preventDefault();
+  setError("");
+  setLoading(true);
+  try {
+    await registerCustomer(formData);
+    navigate("/user/profile");   // changed from "/login" — already logged in now
+  } catch (err) {
+    setError(err.response?.data?.message || "Registration failed. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="ureg-page">
       <div className="ureg-card">
         <p className="ureg-kicker">Create Account</p>
         <h2 className="ureg-title">Join Gomathi's Herbals</h2>
+        <p style={{color: "red", fontWeight: "bold"}}>TEST MARKER 12345</p>
         <p className="ureg-sub">Create an account to track orders and save your favorites.</p>
 
         <form onSubmit={handleSubmit} className="ureg-form">
           <div>
             <label className="ureg-label">Full name</label>
-            <input name="fullName" required value={formData.fullName} onChange={handleChange} className="ureg-input" />
+            <input name="name" required value={formData.name} onChange={handleChange} className="ureg-input" />
           </div>
           <div>
             <label className="ureg-label">Email</label>
@@ -60,17 +51,11 @@ const UserRegisterPage = () => {
           </div>
           <div>
             <label className="ureg-label">Phone number</label>
-            <input name="phone" required value={formData.phone} onChange={handleChange} className="ureg-input" />
+            <input name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} className="ureg-input" />
           </div>
-          <div className="ureg-row">
-            <div>
-              <label className="ureg-label">Password</label>
-              <input type="password" name="password" required value={formData.password} onChange={handleChange} className="ureg-input" />
-            </div>
-            <div>
-              <label className="ureg-label">Confirm password</label>
-              <input type="password" name="confirmPassword" required value={formData.confirmPassword} onChange={handleChange} className="ureg-input" />
-            </div>
+          <div>
+            <label className="ureg-label">Password</label>
+            <input type="password" name="password" required value={formData.password} onChange={handleChange} className="ureg-input" />
           </div>
 
           {error && <p className="ureg-error">{error}</p>}

@@ -6,7 +6,7 @@ import SidebarButton from "./SideBarButton";
 const SuperAdminSidebar = () => {
   return (
     <Sidebar>
-      <SidebarLink to="/super-admin/dashboard" icon={LayoutDashboard} label="Dashboard" />
+      <SidebarLink to="/super-admin/SuperAdminDashboard" icon={LayoutDashboard} label="Dashboard" />
       <SidebarLink to="/super-admin/orders" icon={ShoppingBag} label="Orders" />
       <SidebarLink to="/super-admin/products" icon={Package} label="Products" />
       <SidebarLink to="/super-admin/customers" icon={Users} label="Customers" />
